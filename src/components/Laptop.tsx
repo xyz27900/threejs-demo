@@ -4,7 +4,7 @@ import { useGLTF } from '@react-three/drei';
 import React, { useEffect, useState } from 'react';
 import THREE from 'three';
 
-const MODEL_URL = 'threejs-demo/mbp.glb';
+const MODEL_URL = 'mbp.glb';
 
 export type NodesWithGeometry = {
   [name: string]: THREE.Object3D & {
