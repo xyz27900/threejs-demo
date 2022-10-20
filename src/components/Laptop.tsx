@@ -4,6 +4,8 @@ import { useGLTF } from '@react-three/drei';
 import React, { useEffect, useState } from 'react';
 import THREE from 'three';
 
+const MODEL_URL = 'threejs-demo/mbp.glb';
+
 export type NodesWithGeometry = {
   [name: string]: THREE.Object3D & {
     geometry: THREE.BufferGeometry;
@@ -23,7 +25,7 @@ type LaptopProps = {
  */
 
 export const Laptop: React.FC<LaptopProps> = ({ state, scale }) => {
-  const { nodes: nodesGLTF, materials } = useGLTF(`${BASE_URL}/mbp.glb`);
+  const { nodes: nodesGLTF, materials } = useGLTF(MODEL_URL);
   const nodes = nodesGLTF as NodesWithGeometry;
 
   const [mounted, setMounted] = useState(false);
@@ -111,4 +113,4 @@ export const Laptop: React.FC<LaptopProps> = ({ state, scale }) => {
   );
 };
 
-useGLTF.preload(`${BASE_URL}/mbp.glb`);
+useGLTF.preload(MODEL_URL);

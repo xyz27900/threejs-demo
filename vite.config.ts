@@ -14,7 +14,4 @@ export default defineConfig({
       },
     ],
   },
-  define: {
-    BASE_URL: process.env.NODE_ENV === 'production' ? '/threejs-demo' : '/',
-  },
 });
