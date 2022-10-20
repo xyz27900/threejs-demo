@@ -23,7 +23,7 @@ type LaptopProps = {
  */
 
 export const Laptop: React.FC<LaptopProps> = ({ state, scale }) => {
-  const { nodes: nodesGLTF, materials } = useGLTF('/mbp.glb');
+  const { nodes: nodesGLTF, materials } = useGLTF(`${BASE_URL}/mbp.glb`);
   const nodes = nodesGLTF as NodesWithGeometry;
 
   const [mounted, setMounted] = useState(false);
@@ -111,4 +111,4 @@ export const Laptop: React.FC<LaptopProps> = ({ state, scale }) => {
   );
 };
 
-useGLTF.preload('/mbp.glb');
+useGLTF.preload(`${BASE_URL}/mbp.glb`);

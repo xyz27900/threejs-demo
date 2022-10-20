@@ -4,7 +4,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
-    react()
+    react(),
   ],
   resolve: {
     alias: [
@@ -13,5 +13,8 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src'),
       },
     ],
-  }
+  },
+  define: {
+    BASE_URL: process.env.NODE_ENV === 'production' ? '/threejs-demo' : '/',
+  },
 });
