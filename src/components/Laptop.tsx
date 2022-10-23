@@ -50,7 +50,11 @@ export const Laptop: React.FC<LaptopProps> = ({ state, scale }) => {
   });
 
   const { casePositionY } = useSpring({
-    casePositionY: state === 1 ? -0.5 : 0,
+    casePositionY: state === 1
+      ? -0.5
+      : state === 2
+        ? -0.3
+        : 0,
     config: config.molasses,
   });
 

@@ -12,7 +12,7 @@ type CompositionProps = {
 }
 
 export const Composition: React.FC<CompositionProps> = ({ slide }) => {
-  const { width } = useThree((state) => state.viewport);
+  const { width, height } = useThree((state) => state.viewport);
 
   const group = useRef<THREE.Group>(null);
   const keyLight = useRef<THREE.DirectionalLight>(null);
@@ -55,7 +55,7 @@ export const Composition: React.FC<CompositionProps> = ({ slide }) => {
 
         <Laptop
           state={slide}
-          scale={width / 6}
+          scale={Math.min(width, height) / 6}
         />
       </group>
     </React.Fragment>

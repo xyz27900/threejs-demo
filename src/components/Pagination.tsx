@@ -1,58 +1,56 @@
-import { ChevronDown48Regular, ChevronUp48Regular } from '@ricons/fluent';
 import React from 'react';
 import { classname } from '@/utils/classname';
 
 type PaginationProps = {
-  next: () => void;
-  prev: () => void;
-  current: number;
   total: number;
-} & React.HTMLAttributes<HTMLDivElement>;
+  current: number;
+  goTo: (index: number) => void;
+};
 
-export const Pagination: React.FC<PaginationProps> = ({ next, prev, current, total, className, ...props }) => {
-  return <div
-    className={
-      classname(
-        'flex',
-        'flex-col',
-        'gap-4',
-        '-rotate-90',
-        'md:rotate-0',
-        className,
-      )
-    }
-    {...props}
+export const Pagination: React.FC<PaginationProps> = ({ goTo, current, total }) => {
+  return <div className={
+    classname(
+      'fixed',
+      'left-1/2',
+      'bottom-8',
+      'md:left-auto',
+      'md:right-8',
+      'md:bottom-auto',
+      'md:top-1/2',
+      'transform',
+      '-translate-x-1/2',
+      'md:translate-x-0',
+      'md:-translate-y-1/2',
+      'flex',
+      'md:flex-col',
+      'gap-4',
+      'md:gap-6',
+    )
+  }
   >
-    <button
-      className={
-        classname(
-          'w-12',
-          'h-12',
-          'transition',
-          'duration-500',
-          current === 0 && 'opacity-0',
-          current === 0 && 'pointer-events-none',
-        )
-      }
-      onClick={prev}
-    >
-      <ChevronUp48Regular className="text-gray-400 hover:text-white transition" />
-    </button>
-
-    <button
-      className={
-        classname(
-          'w-12',
-          'h-12',
-          'transition',
-          'duration-500',
-          current === total && 'opacity-0',
-          current === total && 'pointer-events-none',
-        )
-      }
-      onClick={next}
-    >
-      <ChevronDown48Regular className="text-gray-400 hover:text-white transition" />
-    </button>
+    {
+      Array.from({ length: total }).map((_, index) => (
+        <button
+          key={index}
+          className={
+            classname(
+              'h-3',
+              'w-3',
+              'md:h-4',
+              'md:w-4',
+              'rounded-full',
+              'bg-gray-400',
+              'hover:bg-white',
+              'transition',
+              'duration-500',
+              'transform',
+              index === current && 'bg-white',
+              index === current && 'scale-110',
+            )
+          }
+          onClick={(): void => goTo(index)}
+        />
+      ))
+    }
   </div>;
 };
