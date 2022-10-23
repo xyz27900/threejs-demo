@@ -24,7 +24,6 @@ export const Pagination: React.FC<PaginationProps> = ({ goTo, current, total }) 
       'flex',
       'md:flex-col',
       'gap-4',
-      'md:gap-6',
     )
   }
   >
@@ -36,8 +35,6 @@ export const Pagination: React.FC<PaginationProps> = ({ goTo, current, total }) 
             classname(
               'h-3',
               'w-3',
-              'md:h-4',
-              'md:w-4',
               'rounded-full',
               'bg-gray-400',
               'hover:bg-white',
