@@ -1,7 +1,9 @@
 import { useMediaQuery } from '@react-hook/media-query';
 import { Canvas } from '@react-three/fiber';
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
+import { BouncingText } from '@/components/BouncingText';
 import { Composition } from '@/components/Composition';
+import { Loader } from '@/components/Loader';
 import { Pagination } from '@/components/Pagination';
 import { SkyBox } from '@/components/SkyBox';
 
@@ -29,7 +31,7 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <React.Fragment>
+    <Suspense fallback={<Loader />}>
       <div className="h-full">
         <Canvas shadows camera={{ position: [0, 0, 40], fov: 12 }}>
           <Composition slide={slide} />
@@ -40,10 +42,10 @@ export const App: React.FC = () => {
 
       {
         isMd
-          ? <div className="fixed text-center bottom-12 left-1/2 transform -translate-x-1/2 tracking-widest">
-            <div className="text-2xl text-gray-200 font-thin animate-bounce-slow">
+          ? <div className="fixed text-center bottom-12 left-1/2 transform -translate-x-1/2">
+            <BouncingText>
               Use arrow keys to change laptop state
-            </div>
+            </BouncingText>
           </div>
           : null
       }
@@ -53,6 +55,6 @@ export const App: React.FC = () => {
         current={slide}
         goTo={setSlide}
       />
-    </React.Fragment>
+    </Suspense>
   );
 };
